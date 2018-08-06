@@ -2,31 +2,27 @@
 
 codeUsager=$1
 
-## Exigence d'rentrer le code usager
+## On exige d'rentrer le code usager
 while [[ -z $codeUsager ]]
 do
    read -p "Votre code usager SVP? " codeUsager
 done
 
-## Verification si le code usager deja existe
+## On verifie si le code usager deja existe
 codeExiste=$(cat "/etc/passwd" | grep "^$codeUsager:")
 
 ## Si le code deja existe, on quitte le script
+## Option
 if [[ -n $codeExiste ]] ; then
-  echo "Cet usager deja existe" ; sleep 1 ; exit 1
+  echo "Cet usager deja existe";sleep 1;exit 1
   
   if [] ; then
     echo ""
   fi
 fi
 
-## Si le code n'existe pas, on demande les reponses optionelles...
-## ...nom complet
+## Si le code n'existe pas, on demande les reponses optionelles
 read -p "Votre nom complet SVP? " nomComplet
-
-# if ! [[ $nomGroupe =~ ^[a-zA-Z_][0-9a-zA-Z_]*$ ]] ## 
-# then
-# echo "Vous devez utiliser seulement les simboles \"a-z, A-Z, _\". "
 
 read -p "Votre nom de groupe SVP? " nomGroupe
 
