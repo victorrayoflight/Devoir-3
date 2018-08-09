@@ -24,10 +24,6 @@ fi
 ## ...nom complet
 read -p "Votre nom complet SVP? " nomComplet
 
-# if ! [[ $nomGroupe =~ ^[a-zA-Z_][0-9a-zA-Z_]*$ ]] ## 
-# then
-# echo "Vous devez utiliser seulement les simboles \"a-z, A-Z, _\". "
-
 read -p "Votre nom de groupe SVP? " nomGroupe
 
 namePattern="^([a-zA-Z_][0-9a-zA-Z_]*|)$"
