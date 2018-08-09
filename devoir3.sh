@@ -1,53 +1,31 @@
 #!/usr/bin/env bash
 
-codeUsager=$1
+##
+##
+##
+## Auteur : Victor Medvedev
+## Date : 2018-08-09
+## Version : 1.0
+##
+## Description du Devoir 3 :
+## - Ce programme vous demande un chiffre de 1 à 7.
+## - Si la valeur fournie n'est pas de 1 à 7, il affiche un message d'erreur et quitte.
+## - Il imprime le jour correspondant au chiffre fourni sous la forme :
+##   Le chiffre X correspond à jjjjjj
+##
+##
+##
 
-## Exigence d'rentrer le code usager
-while [[ -z $codeUsager ]]
-do
-   read -p "Votre code usager SVP? " codeUsager
+jours="dimanche lundi mardi mercredi jeudi vendredi samedi"
+chiffre=$1
+
+while [[ -z $chiffre ]] ; do
+   read -p "Entrez un chiffre de 1 à 7 SVP ? > " chiffre
 done
 
-## Verification si le code usager deja existe
-codeExiste=$(cat "/etc/passwd" | grep "^$codeUsager:")
-
-## Si le code deja existe, on quitte le script
-if [[ -n $codeExiste ]] ; then
-  echo "Cet usager deja existe" ; sleep 1 ; exit 1
-  
-  if [] ; then
-    echo ""
-  fi
+if ! (( 1 <= $chiffre <= 7 )) ; then
+	echo "Le jour nr. \"$chiffre\" n'existe pas !" ; exit 1 ; else
+	for $chiffre in $jours; do
+		echo "Le chiffre $chiffre correspond à $jours"
+	done
 fi
-
-## Si le code n'existe pas, on demande les reponses optionelles...
-## ...nom complet
-read -p "Votre nom complet SVP? " nomComplet
-
-read -p "Votre nom de groupe SVP? " nomGroupe
-
-namePattern="^([a-zA-Z_][0-9a-zA-Z_]*|)$"
-
-while ! [[ $nomGroupe =~ $namePattern ]] ; do
-  read -p "Votre nom de groupe SVP [$namePattern]? " nomGroupe
-done
-
-
-## Formattion d'une commande complete
-userAddCommand="useradd"
-
-if [[ -n $nomGroupe ]]
-then
-   userAddCommand="$userAddCommand -g $nomGroupe"
-fi
-
-if [[ -n $nomComplet ]]
-then
-   userAddCommand="$userAddCommand -c \"$nomComplet\""
-fi
-
-userAddCommand="$userAddCommand $codeUsager"
-
-echo $userAddCommand
-
-sleep 1
