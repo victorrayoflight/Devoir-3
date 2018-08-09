@@ -20,12 +20,15 @@ jours="dimanche lundi mardi mercredi jeudi vendredi samedi"
 chiffre=$1
 
 while [[ -z $chiffre ]] ; do
-   read -p "Entrez un chiffre de 1 à 7 SVP ? > " chiffre
+  read -p "Entrez un chiffre de 1 à 7 SVP ? > " chiffre
 done
 
-if ! (( 1 <= $chiffre <= 7 )) ; then
-	echo "Le jour nr. \"$chiffre\" n'existe pas !" ; exit 1 ; else
-	for $chiffre in $jours; do
-		echo "Le chiffre $chiffre correspond à $jours"
-	done
+if [[ $chiffre < 1 || $chiffre > 7 ]] ; then
+  echo "Le jour nr. $chiffre n'existe pas !" ; exit 1
+  else
+    for (( jour=0 ; jour = $chiffre ; jour=jour+1 ))
+    do
+      echo "Le chiffre $chiffre correspond à $jours"
+    done
 fi
+
