@@ -4,8 +4,8 @@
 ##
 ##
 ## Auteur : Victor Medvedev
-## Date : 2018-08-08
-## Version: 7 978 567 :) ( j'ai travaillé fort pendant les vacances )
+## Date : 2018-08-15
+## Version: 978
 ##
 ## Description de Devoir 3 :
 ## Écrire le script creusag.sh en respectant toutes les consignes suivantes :
@@ -24,46 +24,59 @@
 
 codeUsager=$1
 
+
 ## On exige d'rentrer le code usager
 while [[ -z $codeUsager ]] ; do
-   read -p "Votre code usager SVP ? " codeUsager
+  read -p "Votre code usager SVP ? > " codeUsager
 done
+
 
 ## On verifie si le code usager deja existe
 codeExiste=$(cat "/etc/passwd" | grep "^$codeUsager:")
 
+
 ## Si le code deja existe, on quitte le script
 if [[ -n $codeExiste ]] ; then
-  echo "Cet usager deja existe." ; sleep 1 ; exit 1
+  echo ; echo "Cet usager deja existe." ; echo ; exit 1
 fi
 
-## Si le code n'existe pas, on demande les reponses optionelles
-read -p "Votre nom complet SVP ? " nomComplet
 
-read -p "Votre nom de groupe SVP ? " nomGroupe
+## Si le code n'existe pas, on demande les reponses optionelles
+read -p "Votre nom complet SVP ? > " nomComplet
+
+
+read -p "Votre nom de groupe SVP ? > " nomGroupe
+
 
 namePattern="^([a-zA-Z_][0-9a-zA-Z_]*|)$"
 
+
 while ! [[ $nomGroupe =~ $namePattern ]] ; do
-  read -p "Seulement symboles \"A-Z, a-z et _\" sont acceptés. Votre nom de groupe SVP ? " nomGroupe
+  read -p "Seulement symboles \"A-Z, a-z et _\" sont acceptés. Votre nom de groupe SVP ? > " nomGroupe
 done
+
 
 ## Formattion d'une commande complete
 userAddCommand="useradd"
 
+
 if [[ -n $nomGroupe ]]
 then
-   userAddCommand="$userAddCommand -g $nomGroupe"
+  userAddCommand="$userAddCommand -g $nomGroupe"
 fi
+
 
 if [[ -n $nomComplet ]]
 then
-   userAddCommand="$userAddCommand -c \"$nomComplet\""
+  userAddCommand="$userAddCommand -c \"$nomComplet\""
 fi
+
 
 userAddCommand="$userAddCommand $codeUsager"
 
-echo $userAddCommand
 
-sleep 1
+echo
+echo $userAddCommand
+echo
+
 
