@@ -1,0 +1,22 @@
+#!/bin/bash
+
+compteurboucle=0
+
+for fichier in B*
+do
+  printf "+%s+\n" "$fichier"
+  echo "$fichier"
+  ((compteurboucle++))
+done
+
+echo "Boucle effectuée $compteurboucle fois"
+
+compteurboucle=0
+for fichier in $(ls B*)
+do
+  printf "+%s+\n" "$fichier"
+  echo "$fichier"
+  ((compteurboucle++))
+done
+
+echo "Boucle effectuée $compteurboucle fois"

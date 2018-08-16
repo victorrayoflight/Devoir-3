@@ -22,28 +22,18 @@ _MSGERR="Ce n'est pas un chiffre de 1 à 7"
 
 read -p "Entrez un chiffre de 1 à 7 SVP ? > " chiffre
 
-[[ "$chiffre" -lt "1" || "$chiffre" -gt "7" ]]
-
-
 if [[ "$chiffre" != [[:digit:]] ]]
 then
   echo "$_MSGERR"
   exit 1
 fi
 
-
-
-
-SEE SCREENSHOT!
-
-
-
-
 if [[ "$chiffre" -lt "1" || "$chiffre" -gt "7" ]]
 then
-  echo "$_MSGERR"
+  echo $_MSGERR
   exit 1
 fi
 
-echo "Le chiffre $chiffre correspond à ${jours[chiffre]}"
+echo "La longueur est ${#jours[@]}"
+echo "Le chiffre $chiffre correspond à ${jours[$chiffre-1]}"
 

@@ -20,15 +20,13 @@
 jours="dimanche lundi mardi mercredi jeudi vendredi samedi"
 _MSGERR="Ce n'est pas un chiffre de 1 à 7"
 
+read -p "Entrez un chiffre de 1 à 7 SVP ? > " chiffre
 
 if [[ "$chiffre" != [[:digit:]] ]]
 then
   echo "$_MSGERR"
   exit 1
 fi
-
-
-read -p "Entrez un chiffre de 1 à 7 SVP ? > " chiffre
 
 if [[ "$chiffre" -lt "1" || "$chiffre" -gt "7" ]]
 then
@@ -45,33 +43,5 @@ do
     echo "Le chiffre $chiffre correspond à $jour"
     break
   fi
-done
-
-
-
-
-
-
-
-
-
-jours="dimanche lundi mardi mercredi jeudi vendredi samedi"
-chiffre=$1
-
-while [[ -z $chiffre ]] ; do
-
-
-done
-
-if [[ $chiffre < 1 || $chiffre > 7 ]] ; then
-    echo "Le jour qui correspond à « $chiffre » n'existe pas." ; exit 1
-fi
-
-compter=0
-for jour in $jours ; do
-    (( compter = compter + 1 ))
-    if (( $chiffre == $compter )) ; then
-        echo "Le chiffre $chiffre correspond à $jour."
-    fi
 done
 
