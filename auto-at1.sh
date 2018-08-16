@@ -1,5 +1,9 @@
 #!/bin/bash
 
+bleu=$(tput setaf 4)
+normal=$(tput sgr0)
+
+
 ajout_usager()
 {
   echo $(zenity --file-selection 2> /dev/null) traitement terminé
