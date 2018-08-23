@@ -1,19 +1,20 @@
 #!/bin/bash
+
 id=1000
 numuser=0;
 while :
 do
-check=`cat /etc/passwd | grep $id`
-if [[ -z "$check" ]]
-then
-echo -n "there are "
-echo -n $numuser
-echo " users"
-break
-else
-((id++))
-((numuser++))
-fi
+  check=`cat /etc/passwd | grep $id`
+  if [[ -z "$check" ]]
+  then
+    echo -n "there are "
+    echo -n $numuser
+    echo " users"
+    break
+  else
+    ((id++))
+    ((numuser++))
+  fi
 done
 
 # grep '/home' /etc/passwd -c
