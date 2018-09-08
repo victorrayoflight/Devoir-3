@@ -1,0 +1,19 @@
+trap «wall trap term term recu; exit» TERM
+while true
+do
+sleep 10
+done
+
+
+
+
+testtrap.service
+[Unit]
+Description=Demonstration processus long
+
+[Service]
+Type=normal
+User=adminvm
+
+ExecStart=/usr/bin/bash /home/adminvm/testtrap.sh
+
