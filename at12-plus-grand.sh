@@ -7,6 +7,8 @@
 ## de nombres donnée en paramètre dans la variable plusGrand
 ## Écrire un script qui utilise cette fonction
 
+echo $@
+
 foncPlusGrand()
 {
   plusGrand=$1
